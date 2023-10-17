@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Login_System.Core.SharedContext.Extensions
+namespace Login_System.Core.Contexts.SharedContext.Extensions
 {
     public static class StringExtension
     {

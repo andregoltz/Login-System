@@ -1,8 +1,8 @@
-﻿using Login_System.Core.SharedContext.ValueObjects;
+﻿using Login_System.Core.Contexts.SharedContext.ValueObjects;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 
-namespace Login_System.Core.AccountContext.ValueObjects
+namespace Login_System.Core.Contexts.AccountContext.ValueObjects
 {
     public class Password : ValueObject
     {
@@ -29,7 +29,7 @@ namespace Login_System.Core.AccountContext.ValueObjects
         bool includeSpecialChars = true,
         bool upperCase = false)
         {
-            var chars = includeSpecialChars ? (Valid + Special) : Valid;
+            var chars = includeSpecialChars ? Valid + Special : Valid;
             var startRandom = upperCase ? 26 : 0;
             var index = 0;
             var res = new char[length];

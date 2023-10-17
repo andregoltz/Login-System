@@ -1,7 +1,8 @@
 ﻿using Login_System.Core.AccountContext.ValueObjects;
-using Login_System.Core.SharedContext.Entities;
+using Login_System.Core.Contexts.AccountContext.ValueObjects;
+using Login_System.Core.Contexts.SharedContext.Entities;
 
-namespace Login_System.Core.AccountContext.Entities
+namespace Login_System.Core.Contexts.AccountContext.Entities
 {
     public class User : Entity
     {
@@ -15,7 +16,7 @@ namespace Login_System.Core.AccountContext.Entities
         public Email Email { get; private set; } = null!;
         public Password Password { get; private set; } = null!;
         public string Image { get; private set; } = string.Empty;
-        
+
         public void UpdatePassword(string plainTextPassword, string code)
         {
             if (!string.Equals(code.Trim(), Password.ResetCode.Trim(), StringComparison.CurrentCultureIgnoreCase))

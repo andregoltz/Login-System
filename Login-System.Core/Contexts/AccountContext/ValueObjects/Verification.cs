@@ -1,6 +1,6 @@
-﻿using Login_System.Core.SharedContext.ValueObjects;
+﻿using Login_System.Core.Contexts.SharedContext.ValueObjects;
 
-namespace Login_System.Core.AccountContext.ValueObjects
+namespace Login_System.Core.Contexts.AccountContext.ValueObjects
 {
     public class Verification : ValueObject
     {
@@ -18,7 +18,7 @@ namespace Login_System.Core.AccountContext.ValueObjects
             if (ExpiresAt < DateTime.UtcNow)
                 throw new Exception("0x05 - Exte código já expirou");
 
-            if(!string.Equals(code.Trim(), Code.Trim(), StringComparison.CurrentCultureIgnoreCase))
+            if (!string.Equals(code.Trim(), Code.Trim(), StringComparison.CurrentCultureIgnoreCase))
                 throw new Exception("0x06 - Código de verificação inválido");
 
             ExpiresAt = null;

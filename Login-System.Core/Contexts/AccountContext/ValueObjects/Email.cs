@@ -1,5 +1,6 @@
-﻿using Login_System.Core.SharedContext.Extensions;
-using Login_System.Core.SharedContext.ValueObjects;
+﻿using Login_System.Core.Contexts.AccountContext.ValueObjects;
+using Login_System.Core.Contexts.SharedContext.Extensions;
+using Login_System.Core.Contexts.SharedContext.ValueObjects;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
 
