@@ -50,6 +50,16 @@ namespace Login_System.Infra.Contexts.AccountContext.Mappings
             builder.OwnsOne(x => x.Email)
                 .OwnsOne(x => x.Verification)
                 .Ignore(x => x.IsActive);
+
+            builder.OwnsOne(x => x.Password)
+            .Property(x => x.Hash)
+            .HasColumnName("PasswordHash")
+            .IsRequired();
+
+            builder.OwnsOne(x => x.Password)
+                .Property(x => x.ResetCode)
+                .HasColumnName("PasswordResetCode")
+                .IsRequired();
         }
     }
 }
