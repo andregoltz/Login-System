@@ -2,11 +2,12 @@
 using Login_System.Core.Contexts.AccountContext.Entities;
 using Login_System.Core.Contexts.AccountContext.UseCases.Create.Contracts;
 using Login_System.Core.Contexts.AccountContext.ValueObjects;
+using MediatR;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Login_System.Core.Contexts.AccountContext.UseCases.Create
 {
-    public class Handler
+    public class Handler : IRequestHandler<Request, Response>
     {
         private readonly IRepository _repository;
         private readonly IService _service;

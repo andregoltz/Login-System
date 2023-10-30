@@ -6,7 +6,7 @@ using SendGrid.Helpers.Mail;
 
 namespace Login_System.Infra.Contexts.AccountContext.UseCases.Create
 {
-    public class Services : IService
+    public class Service : IService
     {
         public async Task SendVerificationEmailAsync(User user, CancellationToken cancellationToken)
         {
