@@ -12,6 +12,13 @@ namespace Login_System.Core.Contexts.AccountContext.Entities
             Email = email;
             Password = new Password(password);
         }
+
+        public User(string name, Email email, Password password)
+        {
+            Email = email;
+            Password = password;
+            Name = name;
+        }
         public string Name { get; private set; } = string.Empty;
         public Email Email { get; private set; } = null!;
         public Password Password { get; private set; } = null!;
