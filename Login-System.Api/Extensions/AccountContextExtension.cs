@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using MediatR;
+using System.Runtime.CompilerServices;
 
 namespace Login_System.Api.Extensions
 {
@@ -20,9 +21,18 @@ namespace Login_System.Api.Extensions
         public static void MapAccountEndpoints(this WebApplication app)
         {
             #region Create
+            app.MapPost("api/v1/users", async (
+                Login_System.Core.Contexts.AccountContext.UseCases.Create.Request request,
+                IRequestHandler<
+                    Login_System.Core.Contexts.AccountContext.UseCases.Create.Request,
+                    Login_System.Core.Contexts.AccountContext.UseCases.Create.Response> handler) => 
+            {
+                var result = await handler.Handle(request, new CancellationToken());
 
-
-
+                return result.IsSuccess
+                    ? Results.Created($"api/v1/users/{result.Data?.Id}", result)
+                    : Results.Json(result, statusCode: result.Status);
+            });
             #endregion
         }
     }

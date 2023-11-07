@@ -7,7 +7,7 @@ namespace Login_System.Core.Contexts.AccountContext.ValueObjects
         public Verification() { }
         public string Code { get; } = Guid.NewGuid().ToString("N")[..6].ToUpper();
         public DateTime? ExpiresAt { get; private set; } = DateTime.UtcNow.AddMinutes(5);
-        public DateTime? VerifiedAt { get; set; } = null;
+        public DateTime? VerifiedAt { get; private set; } = null;
         public bool IsActive => VerifiedAt != null && ExpiresAt == null;
 
         public void Verify(string code)

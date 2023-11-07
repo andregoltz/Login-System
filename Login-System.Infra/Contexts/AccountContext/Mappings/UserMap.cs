@@ -16,50 +16,51 @@ namespace Login_System.Infra.Contexts.AccountContext.Mappings
                 .HasColumnName("Name")
                 .HasColumnType("NVARCHAR")
                 .HasMaxLength(120)
-                .IsRequired();
+                .IsRequired(true);
 
             builder.Property(x => x.Image)
                 .HasColumnName("Image")
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(255)
-                .IsRequired();
+                .IsRequired(true);
 
             builder.OwnsOne(x => x.Email)
                 .Property(x => x.Address)
                 .HasColumnName("Email")
-                .IsRequired();
+                .IsRequired(true);
 
             builder.OwnsOne(x => x.Email)
                 .OwnsOne(x => x.Verification)
                 .Property(x => x.Code)
                 .HasColumnName("EmailVerificationCode")
-                .IsRequired();
+                .IsRequired(true);
 
             builder.OwnsOne(x => x.Email)
                 .OwnsOne(x => x.Verification)
                 .Property(x => x.ExpiresAt)
                 .HasColumnName("EmailVerificationExpiresAt")
-                .IsRequired();
+                .IsRequired(false);
 
             builder.OwnsOne(x => x.Email)
                 .OwnsOne(x => x.Verification)
                 .Property(x => x.VerifiedAt)
                 .HasColumnName("EmailVerificationVerifiedAt")
-                .IsRequired();
+                .IsRequired(false);
 
             builder.OwnsOne(x => x.Email)
                 .OwnsOne(x => x.Verification)
                 .Ignore(x => x.IsActive);
 
             builder.OwnsOne(x => x.Password)
-            .Property(x => x.Hash)
-            .HasColumnName("PasswordHash")
-            .IsRequired();
+                .Property(x => x.Hash)
+                .HasColumnName("PasswordHash")
+                .IsRequired();
 
             builder.OwnsOne(x => x.Password)
                 .Property(x => x.ResetCode)
                 .HasColumnName("PasswordResetCode")
                 .IsRequired();
+
         }
     }
 }

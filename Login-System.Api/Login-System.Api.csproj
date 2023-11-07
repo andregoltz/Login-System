@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <ItemGroup>
     <ProjectReference Include="..\Login-System.Infra\Login-System.Infra.csproj" />
@@ -17,6 +17,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Login_System.Api</RootNamespace>
+    <UserSecretsId>7dac07e7-683f-4efe-a961-70582e5c3e65</UserSecretsId>
   </PropertyGroup>
 
 </Project>
