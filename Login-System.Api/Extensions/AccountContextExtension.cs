@@ -44,16 +44,20 @@ namespace Login_System.Api.Extensions
 
             #region Authenticate
             app.MapPost("api/v1/authenticate", async (
-                Login_System.Core.Contexts.AccountContext.UseCases.Authenticate.Request request,
-                IRequestHandler<
-                    Login_System.Core.Contexts.AccountContext.UseCases.Authenticate.Request,
-                    Login_System.Core.Contexts.AccountContext.UseCases.Authenticate.Response> handler) =>
+            Login_System.Core.Contexts.AccountContext.UseCases.Authenticate.Request request,
+            IRequestHandler<
+                Login_System.Core.Contexts.AccountContext.UseCases.Authenticate.Request,
+                Login_System.Core.Contexts.AccountContext.UseCases.Authenticate.Response> handler) =>
             {
                 var result = await handler.Handle(request, new CancellationToken());
+                if (!result.IsSuccess)
+                    return Results.Json(result, statusCode: result.Status);
 
-                return result.IsSuccess
-                    ? Results.Ok(result)
-                    : Results.Json(result, statusCode: result.Status);
+                if (result.Data is null)
+                    return Results.Json(result, statusCode: 500);
+
+                result.Data.Token = JwtExtension.Generate(result.Data);
+                return Results.Ok(result);
             });
             #endregion
         }
