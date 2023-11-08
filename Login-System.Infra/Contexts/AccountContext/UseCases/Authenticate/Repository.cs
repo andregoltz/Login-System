@@ -13,6 +13,7 @@ namespace Login_System.Infra.Contexts.AccountContext.UseCases.Authenticate
         public async Task<User?> GetUserByEmailAsync(string email, CancellationToken cancellationToken) => await _context
                         .Users
                         .AsNoTracking()
+                        .Include(x => x.Roles)
                         .FirstOrDefaultAsync(x => x.Email.Address == email, cancellationToken);
     }
 }
