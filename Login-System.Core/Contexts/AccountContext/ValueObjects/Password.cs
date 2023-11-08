@@ -93,5 +93,8 @@ namespace Login_System.Core.Contexts.AccountContext.ValueObjects
 
             return keyToCheck.SequenceEqual(key);
         }
+
+        public bool Challenge(string plainTextPassword)
+            => Verify(Hash, plainTextPassword);
     }
 }
